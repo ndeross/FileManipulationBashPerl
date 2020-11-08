@@ -1,0 +1,20 @@
+This assigment is a PERL script meant to emulate the functionality of the origional assigment in C 
+
+To run this script, you must first give it executable permissions by using: 
+
+chmod +x HW9 
+
+after that, it is run with ./HW9 <filename> <flag> <number of prints> 
+
+It can be run with anything less than 4 arguments, but the file must be in the same directory as the script  
+
+
+./HW9 - produces a message that no file is specified 
+
+./HW9 <filename> - prints the content of the file once 
+
+./HW9 <filename> <-d> - prints the contents of the file once 
+
+./HW9 <filename> <-d> <integer> - prints the contents of the file <integer> ammount of times 
+
+I have included a file "test.txt" in this submission for use testing the program 

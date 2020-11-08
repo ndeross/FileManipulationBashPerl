@@ -1,0 +1,149 @@
+#!/usr/bin/perl 
+
+
+
+#I imported a function to verify integers here to check input 
+
+use Scalar::Util qw(looks_like_number);
+
+$num_args = $#ARGV + 1;
+
+$Correct_Flag = "-d"; 
+
+
+#Checks to see if the program has been given a file name 
+
+if ($num_args < 1) { print "No file specified!\n"; 
+			    exit; } 
+
+
+
+# Makes sure the number of arguments doesnt go over 
+
+if ($num_args > 3) {
+    print "ERROR: too many arguments!\n";
+    exit;
+}
+
+#Grabs the file name 
+
+$file_name=$ARGV[0];
+chomp($file_name); 
+
+
+#This code executes if just given a file name, prints once and exits 
+
+if ($num_args == 1) {
+
+open(my $fh, '<:encoding(UTF-8)', $file_name)
+  or die "Could not open file '$file_name' $!";
+ 
+while (my $row = <$fh>) {
+  chomp $row;
+  print "$row\n";
+ }
+
+close ($fh) 
+  or die "Could not close file '$file_name' $!";
+
+exit; 
+
+} 
+
+
+
+# Executes if given a filename and the flag, validates the flag, prints once 
+
+if ($num_args == 2) { 
+
+$flag=$ARGV[1];
+chomp($flag); 
+
+
+if ($flag ne $Correct_Flag) {
+
+print "Error: Invalid flag!\n";
+exit; 
+
+}
+
+
+open(my $fh, '<:encoding(UTF-8)', $file_name)
+  or die "Could not open file '$file_name' $!";
+ 
+while (my $row = <$fh>) {
+  chomp $row;
+  print "$row\n";
+ }
+
+close ($fh) 
+  or die "Could not close file '$file_name' $!";
+
+exit; 
+
+}
+
+
+
+#This executes if given the flag and a number to print
+# Validates the flag, and the integer and prints that number of times 
+
+if ($num_args == 3) {
+
+$flag=$ARGV[1];
+chomp($flag); 
+
+
+if ($flag ne $Correct_Flag) {
+
+print "Error: Invalid flag!\n";
+exit; 
+
+}
+
+$Num_Prints = $ARGV[2]; 
+
+# Imported function to check the integer before converting 
+
+if (looks_like_number($Num_Prints)) {
+  
+$NumPrints = sprintf("%d", $ARGV[2]); 
+
+my $i = 0; 
+
+while ($i <= $NumPrints-1) { 
+
+open(my $fh, '<:encoding(UTF-8)', $file_name)
+  or die "Could not open file '$file_name' $!";
+ 
+while (my $row = <$fh>) {
+  chomp $row;
+  print "$row\n";
+ }
+
+$i = $i + 1; 
+
+close ($fh) 
+  or die "Could not close file '$file_name' $!";
+
+} 
+
+#Executes if not given an integer, exits 
+
+} else {
+  print "ERROR: Invalid print number!\n"; 
+  exit; 
+}
+
+
+}
+
+exit; 
+
+
+
+
+
+
+
+
